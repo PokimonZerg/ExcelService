@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 
 namespace ExcelService.Controllers
@@ -13,10 +11,14 @@ namespace ExcelService.Controllers
         [Route("version")]
         public String Version()
         {
-            var excel = new NetOffice.ExcelApi.Application();
+            using (var excel = new NetOffice.ExcelApi.Application())
+            {
+                var version = excel.Version;
 
-            return excel.Version;
-            //return "test";
+                excel.Quit();
+
+                return version;
+            }
         }
 
         // GET: api/values
