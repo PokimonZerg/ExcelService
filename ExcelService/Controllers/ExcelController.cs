@@ -9,6 +9,16 @@ namespace ExcelService.Controllers
     [Route("api/[controller]")]
     public class ExcelController : Controller
     {
+        [HttpGet]
+        [Route("version")]
+        public String Version()
+        {
+            var excel = new NetOffice.ExcelApi.Application();
+
+            return excel.Version;
+            //return "test";
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
